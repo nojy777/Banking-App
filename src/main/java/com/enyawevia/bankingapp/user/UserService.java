@@ -44,6 +44,12 @@ public class UserService {
 
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
+                // set logged In User
+
+                LoggedInUser.setId(rs.getInt("id"));
+                LoggedInUser.setFirstName(rs.getString("first_name"));
+                LoggedInUser.setLastName(rs.getString("last_name"));
+                LoggedInUser.setEmail(rs.getString("email"));
                 return true;
             }
             return false;

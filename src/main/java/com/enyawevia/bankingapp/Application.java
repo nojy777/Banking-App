@@ -1,5 +1,6 @@
 package com.enyawevia.bankingapp;
 
+import com.enyawevia.bankingapp.account.AccountService;
 import com.enyawevia.bankingapp.user.User;
 import com.enyawevia.bankingapp.user.UserService;
 
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class Application {
 
     UserService userSvc = new UserService();
+    AccountService accSvc = new AccountService();
     Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -85,5 +87,37 @@ public class Application {
         System.out.println("5. Logout");
 
         int userMenuResp = scanner.nextInt();
+
+        switch (userMenuResp ) {
+            case 1:
+                System.out.println("1. Savings");
+                System.out.println("2. Checking");
+                int accountTypeResp = scanner.nextInt();
+                accSvc.createAccount(accountTypeResp);
+
+                break;
+            case 2:
+                System.out.println("Deposit");
+                break;
+
+            case 3:
+                System.out.println("Withdrawal");
+                break;
+
+            case 4:
+                System.out.println("Check Balance");
+                break;
+
+            case 5:
+                System.out.println("Logout");
+                mainMenu();
+                break;
+
+            default:
+                System.out.println("Invalid Input. Please enter a correct input");
+                break;
+        }
+        userMenu();
+
     }
 }
