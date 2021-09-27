@@ -1,5 +1,6 @@
 package com.enyawevia.bankingapp;
 
+import com.enyawevia.bankingapp.account.Account;
 import com.enyawevia.bankingapp.account.AccountService;
 import com.enyawevia.bankingapp.user.User;
 import com.enyawevia.bankingapp.user.UserService;
@@ -10,6 +11,7 @@ public class Application {
 
     UserService userSvc = new UserService();
     AccountService accSvc = new AccountService();
+
     Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -88,36 +90,83 @@ public class Application {
 
         int userMenuResp = scanner.nextInt();
 
-        switch (userMenuResp ) {
+        switch (userMenuResp) {
             case 1:
                 System.out.println("1. Savings");
                 System.out.println("2. Checking");
                 int accountTypeResp = scanner.nextInt();
-                accSvc.createAccount(accountTypeResp);
 
+                int res = accSvc.createAccount(accountTypeResp);
+                if(res == 1) {
+                    System.out.println("Account Created Successfully");
+                } else {
+                    System.out.println("Failed to create account");
+                }
                 break;
             case 2:
-                System.out.println("Deposit");
-                break;
+                System.out.println("Deposit funds");
+                // get all users accounts
+                Account selectedDepositAccount = accSvc.listAndSelectAccount();
 
+                if(selectedDepositAccount == null) {
+                    break;
+                }
+
+                System.out.print("Enter amount to deposit: ");
+                double depositAmount = scanner.nextDouble();
+
+                if(depositAmount <= 0) {
+                    System.out.println("Invalid amount. Amount must be greater than 0");
+                    break;
+                }
+
+                if(accSvc.depositFunds(selectedDepositAccount, depositAmount) == 1) {
+                    System.out.println("Funds Deposited Successfully");
+                } else {
+                    System.out.println("Failed to deposit funds");
+                }
+                break;
             case 3:
-                System.out.println("Withdrawal");
-                break;
+                // get all users accounts
+                Account selectedWithdrawalAccount = accSvc.listAndSelectAccount();
 
+                if(selectedWithdrawalAccount == null) {
+                    break;
+                }
+
+                System.out.println("Enter amount to withdraw : ");
+                double withdrawalAmount = scanner.nextDouble();
+
+                if(withdrawalAmount <= 0) {
+                    System.out.println("Invalid amount. Amount must be greater than 0");
+                    break;
+                }
+
+                if(accSvc.withdrawFunds(selectedWithdrawalAccount, withdrawalAmount) == 1) {
+                    System.out.println("Funds Withdrawn Successfully");
+                } else {
+                    System.out.println("Failed to withdraw funds");
+                }
+                break;
             case 4:
-                System.out.println("Check Balance");
-                break;
+                // get all users accounts
+                Account selectedCheckBalanceAccount = accSvc.listAndSelectAccount();
 
+                if(selectedCheckBalanceAccount == null) {
+                    break;
+                }
+
+                double balance = accSvc.checkBalance(selectedCheckBalanceAccount);
+                System.out.println("Account balance is : " + balance);
+                break;
             case 5:
                 System.out.println("Logout");
                 mainMenu();
                 break;
-
             default:
                 System.out.println("Invalid Input. Please enter a correct input");
                 break;
         }
         userMenu();
-
     }
 }
