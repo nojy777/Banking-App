@@ -1,7 +1,7 @@
 package com.enyawevia.bankingapp.user;
 
 /** Represents a user.
- * @author
+ * @author ENOJE Awevia
  * @version 1.0
  */
 public class User {

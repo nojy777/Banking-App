@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /** Account Service Class. Contains all the functions to be performed on an account
- * @author
+ * @author Enoje Awevia
  * @version 1.0
  */
 public class AccountService {
@@ -49,14 +49,14 @@ public class AccountService {
         int length = 8;
 
         // set characters in random string
-        String alphaNumericString = "1234567890";
+        String numericString = "1234567890";
         StringBuilder sb = new StringBuilder(length);
 
         for (int i = 0; i < length; i++) {
-            int index = (int) (alphaNumericString.length() * Math.random());
+            int index = (int) (numericString.length() * Math.random());
 
             // add Character one by one in end of sb
-            sb.append(alphaNumericString.charAt(index));
+            sb.append(numericString.charAt(index));
         }
         return sb.toString();
     }
@@ -101,7 +101,7 @@ public class AccountService {
             List<Account> accountList = new ArrayList<>();
 
             if(!rs.isBeforeFirst()) {
-                System.out.println("You must create at one account to perform a transaction");
+                System.out.println("You must create at least one account to perform a transaction");
                 return null;
             }
 
@@ -116,7 +116,7 @@ public class AccountService {
             }
             return accountList;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
             return null;
         }
     }
@@ -195,7 +195,7 @@ public class AccountService {
             }
             return balance;
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            System.out.println(ex.getMessage());
             return 0;
         }
     }

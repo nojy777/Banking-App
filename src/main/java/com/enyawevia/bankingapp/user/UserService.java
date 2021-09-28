@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /** User service class. Contains the login and register functionalities.
- * @author
+ * @author Enoje Awevia
  * @version 1.0
  */
 public class UserService {

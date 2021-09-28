@@ -22,7 +22,7 @@ public class Application {
     public void mainMenu() {
         System.out.println("Welcome to Banking App");
 
-        System.out.println("1. Create an account");
+        System.out.println("1. Sign up for an account");
         System.out.println("2. Login");
         System.out.println("3. Exit");
 
@@ -31,7 +31,7 @@ public class Application {
 
         switch(menuResp) {
             case 1:
-                System.out.println("Register new account");
+                System.out.println("Sign up new account");
 
                 System.out.print("Enter your first name : ");
                 String firstName = scanner.next();

@@ -1,7 +1,7 @@
 package com.enyawevia.bankingapp.account;
 
 /** Represents an Account.
- * @author
+ * @author Enoje Awevia
  * @version 1.0
  */
 public class Account {

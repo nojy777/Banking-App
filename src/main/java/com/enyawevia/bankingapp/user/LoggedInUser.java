@@ -1,7 +1,7 @@
 package com.enyawevia.bankingapp.user;
 
 /** Represents the details of a logged-in user.
- * @author
+ * @author Enoje Awevia
  * @version 1.0
  */
 public class LoggedInUser {
