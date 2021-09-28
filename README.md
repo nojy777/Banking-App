@@ -16,6 +16,6 @@ The project was developed with the following
 
 - Java 8
 - Apache Maven
-- Postgres deployed on AWS RDS
+- Postgres 
 
   
