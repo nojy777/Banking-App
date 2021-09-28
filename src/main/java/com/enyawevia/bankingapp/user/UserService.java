@@ -22,6 +22,17 @@ public class UserService {
         String sql = "insert into users (first_name, last_name, email, password) values(?,?,?,?)";
         try {
             Connection c = connect.establishConnection();
+
+            // check duplicate emails
+            String dupEmailSql = "SELECT * FROM users WHERE email = ?";
+            PreparedStatement dupEmailPs = c.prepareStatement(dupEmailSql);
+            dupEmailPs.setString(1, user.getEmail());
+            ResultSet dupEmailRs = dupEmailPs.executeQuery();
+            if(dupEmailRs.next()){
+                System.out.println("Email is already taken by another user. Please use a different email address");
+                return null;
+            }
+
             PreparedStatement ps = c.prepareStatement(sql);
 
             ps.setString(1, user.getFirstName());
@@ -31,9 +42,9 @@ public class UserService {
 
             int resp = ps.executeUpdate();
             if(resp == 1) {
-                System.out.println("Account Created Successfully");
+                System.out.println("Registration  Successful");
             } else {
-                System.out.println("Failed to create account. Please try again");
+                System.out.println("Registration failed. Please try again");
             }
 
         } catch (Exception ex) {

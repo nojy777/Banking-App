@@ -51,7 +51,10 @@ public class Application {
                 user.setEmail(email);
                 user.setPassword(password);
 
-                userSvc.registerUser(user);
+                User resp = userSvc.registerUser(user);
+                if(resp == null) {
+                    break;
+                }
                 break;
             case 2:
                 System.out.println("Login to your account");
@@ -94,6 +97,7 @@ public class Application {
             case 1:
                 System.out.println("1. Savings");
                 System.out.println("2. Checking");
+                System.out.print("select an account type : ");
                 int accountTypeResp = scanner.nextInt();
 
                 int res = accSvc.createAccount(accountTypeResp);

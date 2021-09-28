@@ -128,8 +128,9 @@ public class AccountService {
         try {
             List<Account> accList = getUserAccounts(LoggedInUser.getId());
             for (int x = 0; x < accList.size(); x++) {
-                System.out.println((x + 1) + ". " + accList.get(x).getAccountNumber() + " => " + accList.get(x).getBalance());
+                System.out.println((x + 1) + ". " + accList.get(x).getAccountNumber() + " => $ " + accList.get(x).getBalance());
             }
+            System.out.print("select an account : ");
 
             int accountIndex = scanner.nextInt();
 
